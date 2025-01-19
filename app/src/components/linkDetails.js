@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { voteLink, commentLink } from "../api";
+import { voteLink, commentLink, fetchLinkDetails } from "../api";
 
-const LinkDetails = ({ link, comments, onBack }) => {
+const LinkDetails = ({ link, comments, onBack, setComments, setLink }) => {
   const [newComment, setNewComment] = useState("");
 
   const handleCommentSubmit = async () => {
@@ -13,6 +13,9 @@ const LinkDetails = ({ link, comments, onBack }) => {
     try {
       await commentLink(link._id, newComment);
       setNewComment("");
+      const updatedLinkDetails = await fetchLinkDetails(link._id);
+      setComments(updatedLinkDetails.comments);
+
     } catch (error) {
       alert(`Error al enviar el comentario: ${error.message}`);
     }
@@ -21,7 +24,7 @@ const LinkDetails = ({ link, comments, onBack }) => {
   const handleVote = async () => {
     try {
       const updatedLink = await voteLink(link._id);
-      link.votes = updatedLink.votes;
+      setLink((prevLink) => ({ ...prevLink, votes: updatedLink.votes }));
     } catch (error) {
       alert(`Error al votar: ${error.message}`);
     }
@@ -30,7 +33,6 @@ const LinkDetails = ({ link, comments, onBack }) => {
   return (
     <div>
       <h2>Detalles</h2>
-      <p><strong>Título:</strong> {link.title}</p>
       <p><strong>Votos:</strong> {link.votes}</p>
       <button onClick={handleVote}>Votar</button>
       <div>
@@ -38,8 +40,8 @@ const LinkDetails = ({ link, comments, onBack }) => {
         {comments.length ? (
           comments.map((comment) => (
             <div key={comment._id}>
-              <p><strong>Comentario:</strong> {comment.content}</p>
-              <p><strong>Fecha:</strong> {new Date(comment.createdAt).toLocaleString()}</p>
+              <p>{comment.content}</p>
+              {/* <p><strong>Fecha:</strong> {new Date(comment.createdAt).toLocaleString()}</p> */}
             </div>
           ))
         ) : (

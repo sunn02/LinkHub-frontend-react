@@ -19,7 +19,7 @@ const SaveLink = ({ onBack }) => {
 
     try {
       await saveLink(linkData);
-      alert("Enlace guardado exitosamente.");
+      console.log("Enlace guardado exitosamente.");
       onBack();
     } catch (error) {
       alert(`Error al guardar el enlace: ${error.message}`);
@@ -53,7 +53,6 @@ const SaveLink = ({ onBack }) => {
         onChange={(e) => setNewLink({ ...newLink, tags: e.target.value })}
       />
       <button onClick={handleSave}>Guardar enlace</button>
-      <button onClick={onBack}>Volver</button>
     </div>
   );
 };

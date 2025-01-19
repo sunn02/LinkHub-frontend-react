@@ -31,6 +31,7 @@ function App() {
   return (
     <div>
       {view === "home" && (
+        <>
         <LinkList
           links={links}
           tagFilter={tagFilter}
@@ -38,12 +39,15 @@ function App() {
           onFilterSubmit={handleFilterSubmit}
           onSelectLink={handleSelectLink}
         />
+        <button onClick={() => setView("save")}>Añadir enlace</button>
+      </>
       )}
       {view === "details" && (
-        <LinkDetails link={selectedLink} comments={comments} onBack={handleBack} />
+        <LinkDetails link={selectedLink} comments={comments} onBack={handleBack} setComments={setComments}
+        setLink={setSelectedLink} />
       )}
-      {view === "save" && <SaveLink onBack={handleBack} />}
-      <button onClick={() => setView("save")}>Añadir enlace</button>
+      {view === "save" && (
+        <SaveLink onBack={handleBack} />)}
     </div>
   );
 }

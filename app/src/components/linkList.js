@@ -9,7 +9,6 @@ const LinkList = ({ links, onSelectLink, onFilterChange, tagFilter, onFilterSubm
         value={tagFilter}
         onChange={onFilterChange}
       />
-      <button onClick={onFilterSubmit}>Filtrar</button>
       <div>
         {links.length ? (
           links.map((link) => (
