@@ -36,7 +36,7 @@ const LinkDetails = ({ link, comments, onBack, setComments, setLink }) => {
       <p><strong>Votos:</strong> {link.votes}</p>
       <button onClick={handleVote}>Votar</button>
       <div>
-        <h3>Comentarios</h3>
+        <p><strong>Comentarios</strong></p>
         {comments.length ? (
           comments.map((comment) => (
             <div key={comment._id}>
@@ -52,7 +52,7 @@ const LinkDetails = ({ link, comments, onBack, setComments, setLink }) => {
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         />
-        <button onClick={handleCommentSubmit}>Enviar comentario</button>
+        <button onClick={handleCommentSubmit}>Enviar</button>
       </div>
       <button onClick={onBack}>Volver</button>
     </div>

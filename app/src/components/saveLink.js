@@ -27,6 +27,8 @@ const SaveLink = ({ onBack }) => {
   };
 
   return (
+    
+    <div>
     <div>
       <input
         type="text"
@@ -53,6 +55,8 @@ const SaveLink = ({ onBack }) => {
         onChange={(e) => setNewLink({ ...newLink, tags: e.target.value })}
       />
       <button onClick={handleSave}>Guardar enlace</button>
+    </div>
+      <button onClick={onBack}>Volver</button>
     </div>
   );
 };
