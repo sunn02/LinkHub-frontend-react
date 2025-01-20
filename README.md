@@ -57,4 +57,3 @@ Este repositorio contiene la versión del frontend del proyecto **LinkHub**, des
   const API_URL = "http://localhost:3005";
 
    ```
-```
